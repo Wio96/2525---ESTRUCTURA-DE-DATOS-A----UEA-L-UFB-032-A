@@ -1,0 +1,12 @@
+bin/
+obj/
+.vscode/
+.vs/
+*.exe
+*.dll
+*.user
+*.suo
+*.log
+*.pdb
+TestResults/
+publish/

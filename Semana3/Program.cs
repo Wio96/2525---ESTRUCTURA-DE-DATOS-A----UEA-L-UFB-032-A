@@ -1,16 +1,13 @@
-using System;
+﻿using System;
 
-// Clase que representa un estudiante
 public class Estudiante
 {
-    // Atributos privados para encapsular los datos
     private int id;
     private string nombres;
     private string apellidos;
     private string direccion;
-    private string[] telefonos; // Array para almacenar los 3 teléfonos
+    private string[] telefonos;
 
-    // Constructor de la clase Estudiante
     public Estudiante(int id, string nombres, string apellidos, string direccion, string[] telefonos)
     {
         this.id = id;
@@ -20,7 +17,6 @@ public class Estudiante
         this.telefonos = telefonos;
     }
 
-    // Método para mostrar la información del estudiante
     public void MostrarInformacion()
     {
         Console.WriteLine("ID: " + id);
@@ -35,15 +31,12 @@ public class Estudiante
     }
 }
 
-// Clase principal que ejecuta el programa
-class Programa
+class Program
 {
     static void Main()
     {
-        // Se crea un array con tres teléfonos
-        string[] telefonos = new string[3] { "0987654321", "0991234567", "0976543210" };
+        string[] telefonos = { "0987654321", "0991234567", "0976543210" };
 
-        // Se instancia un estudiante con sus datos
         Estudiante estudiante1 = new Estudiante(
             1,
             "Ana María",
@@ -52,7 +45,6 @@ class Programa
             telefonos
         );
 
-        // Se muestra la información del estudiante
         estudiante1.MostrarInformacion();
     }
 }
