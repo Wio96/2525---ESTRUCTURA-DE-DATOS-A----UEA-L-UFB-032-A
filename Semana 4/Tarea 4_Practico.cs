@@ -75,6 +75,19 @@ class Program
         Console.WriteLine("Contacto agregado con éxito.");
     }
 
+    static void MostrarContactos()
+    {
+        Console.WriteLine("\nLista de Contactos:");
+        if (agenda.Count == 0)
+        {
+            Console.WriteLine("No hay contactos registrados.");
+        }
+        else
+        {
+            foreach (Contacto c in agenda)
+            {
+                c.Mostrar();
+            }
         }
     }
 
