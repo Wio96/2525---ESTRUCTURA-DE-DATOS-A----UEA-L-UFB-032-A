@@ -72,28 +72,15 @@ class Program
         nuevo.Correo = Console.ReadLine();
 
         agenda.Add(nuevo);
-        Console.WriteLine("✔ Contacto agregado con éxito.");
+        Console.WriteLine("Contacto agregado con éxito.");
     }
 
-    static void MostrarContactos()
-    {
-        Console.WriteLine("\n📋 Lista de Contactos:");
-        if (agenda.Count == 0)
-        {
-            Console.WriteLine("No hay contactos registrados.");
-        }
-        else
-        {
-            foreach (Contacto c in agenda)
-            {
-                c.Mostrar();
-            }
         }
     }
 
     static void BuscarContacto()
     {
-        Console.Write("🔍 Ingrese el nombre a buscar: ");
+        Console.Write("Ingrese el nombre a buscar: ");
         string? nombreBuscado = Console.ReadLine()?.ToLower();
         bool encontrado = false;
 
@@ -101,7 +88,7 @@ class Program
         {
             if (c.Nombre?.ToLower() == nombreBuscado)
             {
-                Console.WriteLine("✅ Contacto encontrado:");
+                Console.WriteLine("Contacto encontrado:");
                 c.Mostrar();
                 encontrado = true;
                 break;
@@ -110,7 +97,7 @@ class Program
 
         if (!encontrado)
         {
-            Console.WriteLine("⚠ No se encontró el contacto.");
+            Console.WriteLine("No se encontró el contacto.");
         }
     }
 }
