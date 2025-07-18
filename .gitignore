@@ -10,3 +10,4 @@ obj/
 *.pdb
 TestResults/
 publish/
+*.sln
