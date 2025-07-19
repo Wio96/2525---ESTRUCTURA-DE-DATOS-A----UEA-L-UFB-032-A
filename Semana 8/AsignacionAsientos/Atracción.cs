@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class Atraccion
 {
-    private Queue<Persona> cola = new Queue<Persona>();
-    private List<Persona> asientos = new List<Persona>();
+    private Queue<Persona> cola = new();
+    private List<Persona> asientos = new();
     private int capacidadMaxima;
 
     public Atraccion(int capacidad)
@@ -20,7 +20,7 @@ public class Atraccion
             return;
         }
 
-        Persona nuevaPersona = new Persona(nombre);
+        var nuevaPersona = new Persona(nombre);
         cola.Enqueue(nuevaPersona);
         Console.WriteLine($"{nombre} ha ingresado a la cola.");
     }
@@ -29,7 +29,7 @@ public class Atraccion
     {
         while (cola.Count > 0 && asientos.Count < capacidadMaxima)
         {
-            Persona persona = cola.Dequeue();
+            var persona = cola.Dequeue();
             asientos.Add(persona);
             Console.WriteLine($"Asiento asignado a {persona.Nombre}.");
         }
@@ -57,6 +57,7 @@ public class Atraccion
             Console.WriteLine("La cola está vacía.");
             return;
         }
+
         foreach (var persona in cola)
         {
             Console.WriteLine($"- {persona.Nombre}");

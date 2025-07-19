@@ -1,6 +1,6 @@
 public class Persona
 {
-    public string Nombre { get; set; }
+    public string Nombre { get; }
 
     public Persona(string nombre)
     {
