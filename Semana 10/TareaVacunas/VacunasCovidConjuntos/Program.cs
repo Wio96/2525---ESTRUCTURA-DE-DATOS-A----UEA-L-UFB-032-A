@@ -2,16 +2,18 @@
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
+using System;
+using System.Collections.Generic;
 
 // Generar 500 ciudadanos
-var ciudadanos = new List<string>();
+List<string> ciudadanos = new List<string>();
 for (int i = 1; i <= 500; i++)
     ciudadanos.Add("Ciudadano " + i);
 
 // Seleccionar 75 para Pfizer y 75 para AstraZeneca
-var pfizer = new HashSet<string>();
-var astraZeneca = new HashSet<string>();
-var rnd = new Random();
+HashSet<string> pfizer = new HashSet<string>();
+HashSet<string> astraZeneca = new HashSet<string>();
+Random rnd = new Random();
 
 while (pfizer.Count < 75)
     pfizer.Add(ciudadanos[rnd.Next(0, 500)]);
@@ -20,24 +22,24 @@ while (astraZeneca.Count < 75)
     astraZeneca.Add(ciudadanos[rnd.Next(0, 500)]);
 
 // Operaciones de conjuntos
-var todos = new HashSet<string>(ciudadanos);
+HashSet<string> todos = new HashSet<string>(ciudadanos);
 
 // No vacunados = Todos – (Pfizer ∪ AstraZeneca)
-var vacunadosUnion = new HashSet<string>(pfizer);
+HashSet<string> vacunadosUnion = new HashSet<string>(pfizer);
 vacunadosUnion.UnionWith(astraZeneca);
-var noVacunados = new HashSet<string>(todos);
+HashSet<string> noVacunados = new HashSet<string>(todos);
 noVacunados.ExceptWith(vacunadosUnion);
 
 // Ambas dosis = Pfizer ∩ AstraZeneca
-var ambasDosis = new HashSet<string>(pfizer);
+HashSet<string> ambasDosis = new HashSet<string>(pfizer);
 ambasDosis.IntersectWith(astraZeneca);
 
 // Solo Pfizer = Pfizer – AstraZeneca
-var soloPfizer = new HashSet<string>(pfizer);
+HashSet<string> soloPfizer = new HashSet<string>(pfizer);
 soloPfizer.ExceptWith(astraZeneca);
 
 // Solo AstraZeneca = AstraZeneca – Pfizer
-var soloAstraZeneca = new HashSet<string>(astraZeneca);
+HashSet<string> soloAstraZeneca = new HashSet<string>(astraZeneca);
 soloAstraZeneca.ExceptWith(pfizer);
 
 // Imprimir resultados en consola
@@ -48,9 +50,9 @@ Console.WriteLine("\nSolo AstraZeneca: " + string.Join(", ", soloAstraZeneca));
 
 // Generar PDF
 string path = "ReporteVacunacion.pdf";
-var writer = new PdfWriter(path);
-var pdf = new PdfDocument(writer);
-var document = new Document(pdf);
+PdfWriter writer = new PdfWriter(path);
+PdfDocument pdf = new PdfDocument(writer);
+Document document = new Document(pdf);
 
 document.Add(new Paragraph("Reporte de Vacunación COVID-19"));
 document.Add(new Paragraph("--------------------------------------------------"));
