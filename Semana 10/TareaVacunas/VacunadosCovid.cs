@@ -40,13 +40,13 @@ soloPfizer.ExceptWith(astraZeneca);
 var soloAstraZeneca = new HashSet<string>(astraZeneca);
 soloAstraZeneca.ExceptWith(pfizer);
 
-// 4️⃣ Imprimir resultados en consola
+// Imprimir resultados en consola
 Console.WriteLine("No vacunados: " + string.Join(", ", noVacunados));
 Console.WriteLine("\nAmbas dosis: " + string.Join(", ", ambasDosis));
 Console.WriteLine("\nSolo Pfizer: " + string.Join(", ", soloPfizer));
 Console.WriteLine("\nSolo AstraZeneca: " + string.Join(", ", soloAstraZeneca));
 
-// 5️⃣ Generar PDF
+// Generar PDF
 string path = "ReporteVacunacion.pdf";
 var writer = new PdfWriter(path);
 var pdf = new PdfDocument(writer);
