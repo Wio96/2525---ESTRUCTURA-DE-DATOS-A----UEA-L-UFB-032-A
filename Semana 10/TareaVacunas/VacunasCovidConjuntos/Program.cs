@@ -1,16 +1,14 @@
-﻿// iText para PDF
-using iText.Kernel.Pdf;
+﻿using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using System;
-using System.Collections.Generic;
 
-// Generar 500 ciudadanos
+
+
 List<string> ciudadanos = new List<string>();
 for (int i = 1; i <= 500; i++)
     ciudadanos.Add("Ciudadano " + i);
 
-// Seleccionar 75 para Pfizer y 75 para AstraZeneca
+
 HashSet<string> pfizer = new HashSet<string>();
 HashSet<string> astraZeneca = new HashSet<string>();
 Random rnd = new Random();
@@ -21,10 +19,10 @@ while (pfizer.Count < 75)
 while (astraZeneca.Count < 75)
     astraZeneca.Add(ciudadanos[rnd.Next(0, 500)]);
 
-// Operaciones de conjuntos
+
 HashSet<string> todos = new HashSet<string>(ciudadanos);
 
-// No vacunados = Todos – (Pfizer ∪ AstraZeneca)
+
 HashSet<string> vacunadosUnion = new HashSet<string>(pfizer);
 vacunadosUnion.UnionWith(astraZeneca);
 HashSet<string> noVacunados = new HashSet<string>(todos);
