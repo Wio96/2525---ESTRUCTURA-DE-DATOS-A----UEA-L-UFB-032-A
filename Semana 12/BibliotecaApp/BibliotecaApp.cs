@@ -1,144 +1,55 @@
-﻿
-class Biblioteca
+﻿List<int> ids = new List<int>();
+List<string> titulos = new List<string>();
+int opcion = -1;
+
+while (opcion != 0)
 {
-    private HashSet<string> titulos;
-    private Dictionary<int, string> catalogo;
+    Console.WriteLine("1) Agregar libro");
+    Console.WriteLine("2) Mostrar libros");
+    Console.WriteLine("3) Consultar por ID");
+    Console.WriteLine("4) Eliminar por ID");
+    Console.WriteLine("0) Salir");
+    Console.Write("Opcion: ");
+    opcion = int.Parse(Console.ReadLine());
 
-    public Biblioteca()
+    if (opcion == 1)
     {
-        titulos = new HashSet<string>();
-        catalogo = new Dictionary<int, string>();
+        Console.Write("ID: ");
+        int id = int.Parse(Console.ReadLine());
+        Console.Write("Titulo: ");
+        string titulo = Console.ReadLine();
+        ids.Add(id);
+        titulos.Add(titulo);
+        Console.WriteLine("Libro agregado.");
     }
-
-    // Convierte título a formato "Título Capitalizado"
-    private string NormalizarTitulo(string titulo)
+    else if (opcion == 2)
     {
-        TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
-        return textInfo.ToTitleCase((titulo ?? "").ToLower());
+        for (int i = 0; i < ids.Count; i++)
+            Console.WriteLine(ids[i] + ": " + titulos[i]);
     }
-
-    public void AgregarLibro(int id, string titulo)
+    else if (opcion == 3)
     {
-        titulo = NormalizarTitulo(titulo);
-
-        if (!titulos.Contains(titulo))
+        Console.Write("ID a consultar: ");
+        int id = int.Parse(Console.ReadLine());
+        int index = ids.IndexOf(id);
+        if (index >= 0) Console.WriteLine(ids[index] + ": " + titulos[index]);
+        else Console.WriteLine("No existe.");
+    }
+    else if (opcion == 4)
+    {
+        Console.Write("ID a eliminar: ");
+        int id = int.Parse(Console.ReadLine());
+        int index = ids.IndexOf(id);
+        if (index >= 0)
         {
-            titulos.Add(titulo);
-            catalogo[id] = titulo;
-            Console.WriteLine($"Libro '{titulo}' agregado con ID {id}.");
+            Console.WriteLine("Libro " + titulos[index] + " eliminado.");
+            ids.RemoveAt(index);
+            titulos.RemoveAt(index);
         }
-        else
-        {
-            Console.WriteLine("El libro ya existe en la biblioteca.");
-        }
+        else Console.WriteLine("No se encontro.");
     }
-
-    public void ConsultarLibro(int id)
-    {
-        if (catalogo.ContainsKey(id))
-            Console.WriteLine($"ID {id}: {catalogo[id]}");
-        else
-            Console.WriteLine("El libro no existe en el catálogo.");
-    }
-
-    public void EliminarLibro(int id)
-    {
-        if (catalogo.ContainsKey(id))
-        {
-            string titulo = catalogo[id];
-            catalogo.Remove(id);
-            titulos.Remove(titulo);
-            Console.WriteLine($"Libro '{titulo}' eliminado.");
-        }
-        else
-        {
-            Console.WriteLine("No se encontró el libro con ese ID.");
-        }
-    }
-
-    public void MostrarLibros()
-    {
-        if (catalogo.Count == 0)
-        {
-            Console.WriteLine("No hay libros en la biblioteca.");
-            return;
-        }
-
-        Console.WriteLine("\nListado de libros en la biblioteca:");
-        foreach (var libro in catalogo)
-            Console.WriteLine($"ID {libro.Key}: {libro.Value}");
-    }
-}
-
-class Program
-{
-    static void Main()
-    {
-        Biblioteca biblioteca = new Biblioteca();
-        string opcion;
-
-        do
-        {
-            Console.WriteLine("\n=== Menú Biblioteca ===");
-            Console.WriteLine("1) Agregar libro");
-            Console.WriteLine("2) Mostrar todos los libros");
-            Console.WriteLine("3) Consultar libro por ID");
-            Console.WriteLine("4) Eliminar libro por ID");
-            Console.WriteLine("0) Salir");
-            Console.Write("Seleccione una opción: ");
-            opcion = (Console.ReadLine() ?? "").Trim();
-
-            switch (opcion)
-            {
-                case "1":
-                    if (LeerEntero("Ingrese ID del libro: ", out int idAgregar))
-                    {
-                        Console.Write("Ingrese título del libro: ");
-                        string titulo = Console.ReadLine() ?? "";
-                        biblioteca.AgregarLibro(idAgregar, titulo);
-                    }
-                    break;
-
-                case "2":
-                    biblioteca.MostrarLibros();
-                    break;
-
-                case "3":
-                    if (LeerEntero("Ingrese ID a consultar: ", out int idConsultar))
-                        biblioteca.ConsultarLibro(idConsultar);
-                    break;
-
-                case "4":
-                    if (LeerEntero("Ingrese ID a eliminar: ", out int idEliminar))
-                        biblioteca.EliminarLibro(idEliminar);
-                    break;
-
-                case "0":
-                    Console.WriteLine("Saliendo del programa...");
-                    break;
-
-                default:
-                    Console.WriteLine("Opción no válida. Intente de nuevo.");
-                    break;
-            }
-
-        } while (opcion != "0");
-    }
-
-    // Función para validar que el usuario ingrese un entero
-    static bool LeerEntero(string mensaje, out int valor)
-    {
-        Console.Write(mensaje);
-        string entrada = Console.ReadLine() ?? "";
-        if (int.TryParse(entrada, out valor))
-        {
-            return true;
-        }
-        else
-        {
-            Console.WriteLine("Error: ingrese un número entero válido.");
-            valor = 0;
-            return false;
-        }
-    }
+    else if (opcion == 0)
+        Console.WriteLine("Saliendo...");
+    else
+        Console.WriteLine("Opcion invalida");
 }
