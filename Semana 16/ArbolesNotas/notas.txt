@@ -1,0 +1,9 @@
+Ana,Matematicas,18
+Ana,Lengua,15
+Ana,Ciencias,17
+Luis,Matematicas,14
+Luis,Lengua,16
+Luis,Ciencias,15
+Maria,Matematicas,19
+Maria,Lengua,18
+Maria,Ciencias,20
